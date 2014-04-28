@@ -20,7 +20,7 @@
 #
 ######################################################################
 #
-#  git clone -b master https://github.com/Notos/seedbox-from-scratch.git /etc/seedbox-from-scratch
+#  git clone -b master https://github.com/NeiPCs/seedbox-from-scratch.git /etc/seedbox-from-scratch
 #  sudo git stash; sudo git pull
 #
 #
@@ -80,7 +80,7 @@
 #     - Choose between RTorrent 0.8.9 and 0.9.2 (and their respective libtorrent libraries)
 #     - Upgrade and downgrade RTorrent at any time
 #     - Full automated install, now you just have to download script and run it in your box:
-#        > wget -N https://raw.github.com/Notos/seedbox-from-scratch/v2.x.x/seedbox-from-scratch.sh
+#        > wget -N https://raw.github.com/NeiPCs/seedbox-from-scratch/v2.x.x/seedbox-from-scratch.sh
 #        > time bash ~/seedbox-from-scratch.sh
 #     - Due to a recent outage of Webmin site and SourceForge's svn repositories, some packages are now in git and will not be downloaded from those sites
 #     - Updated list of trackers in Autodl-irssi
@@ -247,17 +247,17 @@ PASSWORD2=b
 getString NO  "You need to create an user for your seedbox: " NEWUSER1
 getString YES "Password for user $NEWUSER1: " PASSWORD1
 getString NO  "IP address or hostname of your box: " IPADDRESS1 $IPADDRESS1
-getString NO  "SSH port: " NEWSSHPORT1 21976
-getString NO  "vsftp port (usually 21): " NEWFTPPORT1 21201
-getString NO  "OpenVPN port: " OPENVPNPORT1 31195
+getString NO  "SSH port: " NEWSSHPORT1 50022
+getString NO  "vsftp port (usually 21): " NEWFTPPORT1 50021
+getString NO  "OpenVPN port: " OPENVPNPORT1 50020
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
 getString NO  "Install Webmin? " INSTALLWEBMIN1 YES
 getString NO  "Install Fail2ban? " INSTALLFAIL2BAN1 YES
-getString NO  "Install OpenVPN? " INSTALLOPENVPN1 YES
-getString NO  "Install SABnzbd? " INSTALLSABNZBD1 YES
-getString NO  "Install Rapidleech? " INSTALLRAPIDLEECH1 YES
-getString NO  "Install Deluge? " INSTALLDELUGE1 YES
-getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3'? " RTORRENT1 0.9.2
+getString NO  "Install OpenVPN? " INSTALLOPENVPN1 NO
+#getString NO  "Install SABnzbd? " INSTALLSABNZBD1 YES
+#getString NO  "Install Rapidleech? " INSTALLRAPIDLEECH1 YES
+#getString NO  "Install Deluge? " INSTALLDELUGE1 YES
+getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3'? " RTORRENT1 0.9.3
 
 if [ "$RTORRENT1" != "0.9.3" ] && [ "$RTORRENT1" != "0.9.2" ]; then
   echo "$RTORRENT1 typed is not 0.9.3 or 0.9.2!"
@@ -268,7 +268,7 @@ apt-get --yes update
 apt-get --yes install whois sudo makepasswd git
 
 rm -f -r /etc/seedbox-from-scratch
-git clone -b v$SBFSCURRENTVERSION1 https://github.com/Notos/seedbox-from-scratch.git /etc/seedbox-from-scratch
+git clone -b v$SBFSCURRENTVERSION1 https://github.com/NeiPCs/seedbox-from-scratch.git /etc/seedbox-from-scratch
 mkdir -p cd /etc/seedbox-from-scratch/source
 mkdir -p cd /etc/seedbox-from-scratch/users
 
@@ -538,8 +538,8 @@ cp /etc/seedbox-from-scratch/favicon.ico /var/www/
 
 # 26.
 cd /tmp
-wget http://downloads.sourceforge.net/mediainfo/MediaInfo_CLI_0.7.56_GNU_FromSource.tar.bz2
-tar jxvf MediaInfo_CLI_0.7.56_GNU_FromSource.tar.bz2
+wget http://downloads.sourceforge.net/mediainfo/MediaInfo_CLI_0.7.69_GNU_FromSource.tar.bz2
+tar jxvf MediaInfo_CLI_0.7.69_GNU_FromSource.tar.bz2
 cd MediaInfo_CLI_GNU_FromSource/
 sh CLI_Compile.sh
 cd MediaInfo/Project/GNU/CLI

@@ -130,7 +130,7 @@ enabled = no
 enabled = no
 
 [fileshare]
-enabled = yes
+enabled = no
 
 [history]
 enabled = no
@@ -176,6 +176,9 @@ enabled = yes
 
 [source]
 enabled = yes
+
+[filemanager]
+enabled = no
 
 ;;[filemanager]
 ;;enabled = user-defined ;;; disabled in chroot jail
